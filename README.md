@@ -6,7 +6,7 @@ Web Project - [*TopFestivals*][1]
 ## Collaborators
 * Dand Marbà
 * Joel Romia
-* Ruben Gonzalez
+* Rubén González Molina
 * Jose Ramon Noguero
 * Ruben Querol
 
