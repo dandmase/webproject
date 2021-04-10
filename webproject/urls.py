@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from topfestivals import views
+from django.contrib.auth.decorators import login_required
+from django.urls import path, include, re_path
+from django.contrib.auth.views import logout_then_login, LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.Home.as_view())
+    path('', views.Home.as_view()),
+    path('accounts/login/', LoginView.as_view(template_name='loginpage.html')),
+    path('logout/', logout_then_login)
 ]
