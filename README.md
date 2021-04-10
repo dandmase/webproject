@@ -28,14 +28,14 @@ For the development of the bussines model of TopFestivals we use the following t
 ### Running Project
 First of all you *need to clone the repository* before the requeriments part:  
 Check your python version 
-console
+```console
 $ python3 -V
-
+```
 Finally:
-console
+```console
 $ sudo apt install python3-django
 $ python manage.py runserver
-
+```
 
 ### Users
 http://127.0.0.1:8000/admin/
