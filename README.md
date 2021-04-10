@@ -1,5 +1,7 @@
 # webproject
-Web Project - TopFestivals
+Web Project - [*TopFestivals*][1]
+
+[1]: https://github.com/dandmase/webproject
 
 ## Collaborators
 * Dand Marbà
@@ -19,9 +21,9 @@ For the development of the bussines model of TopFestivals we use the following t
 
 ## How to RUN
 ### Requisites
-- [X] This project uses [*python 3.9*][1] and pip.
+- [X] This project uses [*python 3.9*][2] and pip.
 
-[1]: https://www.python.org/downloads/release/python-394/ "Download Python 3.7.6"
+[2]: https://www.python.org/downloads/release/python-394/ "Download Python 3.9"
   
 ### Running Project
 First of all you *need to clone the repository* before the requeriments part:  
@@ -36,7 +38,7 @@ $ python manage.py runserver
 
 
 ### Users
-
+http://127.0.0.1:8000/admin/
   - *Admin* User
     * Username : *admin*
     * Password : *admin*
