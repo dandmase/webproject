@@ -124,6 +124,21 @@
 {% endblock %}
 {% block footer %}
 
+<h6>
+    Stages
+    {% if user.is_authenticated %}
+        (<a href="{% url 'topfestivals:stage_create' festival.id %}">add</a>)
+    {% endif %}
+</h6>
+<ul>
+    {% for stage in festival.stage.all %}
+        <li><a href="{% url 'topfestivals:stage_detail' festival.id stage.id %}">
+            (<a href="{% url 'topfestivals:stage_delete' stage.id %}">delete</a>)
+            (<a href="{% url 'topfestivals:stage_edit' stage.festival.id stage.id %}">edit</a>)
+            {{ stage.music }}</a></li>
+    {% empty %}<li>Sorry, no stages for this festival yet.</li>
+    {% endfor %}
+</ul>
 <div class="text-muted text-center">
         Created by {{ festival.user }} on {{ festival.date }}
     </div>
