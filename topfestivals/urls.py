@@ -1,9 +1,9 @@
 from django.urls import path
 from django.utils import timezone
-from django.views.generic import DetailView, ListView, DeleteView
-from topfestivals.models import Festival, Artist, Review
+from django.views.generic import DetailView, ListView
 from topfestivals.forms import FestivalForm, ArtistForm, ReviewForm
-from topfestivals.views import FestivalCreate, FestivalDelete, ArtistDelete, ReviewDelete, ArtistCreate, FestivalDetail, review, LoginRequiredCheckIsOwnerUpdateView
+from topfestivals.models import Festival, Artist, Review
+from topfestivals.views import FestivalCreate, ArtistCreate, FestivalDetail, review, LoginRequiredCheckIsOwnerUpdateView
 from . import views
 
 app_name = "topfestivals"

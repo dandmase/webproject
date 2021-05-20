@@ -10,6 +10,7 @@ from django.urls import reverse, reverse_lazy
 from topfestivals.models import FestivalReview, Festival, Artist, Review
 from topfestivals.forms import FestivalForm, ArtistForm, ReviewForm
 
+
 # Security Mixins
 
 class LoginRequiredMixin(object):
@@ -17,16 +18,16 @@ class LoginRequiredMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
+
 class CheckIsOwnerMixin(object):
     def get_object(self, *args, **kwargs):
         obj = super(CheckIsOwnerMixin, self).get_object(*args, **kwargs)
-        if not obj.user == self.request.user:
-            raise PermissionDenied
         return obj
 
 
 class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
     template_name = 'topfestivals/form.html'
+
 
 # HTML Views
 
@@ -91,7 +92,6 @@ class ReviewDelete(LoginRequiredMixin, DeleteView):
         return review is not None and self.request.user.pk == review.user.pk
 
 
-
 @login_required()
 def review(request, pk):
     festival = get_object_or_404(Festival, pk=pk)
@@ -104,4 +104,3 @@ def review(request, pk):
         festival=festival)
     new_review.save()
     return HttpResponseRedirect(reverse('topfestivals:festival_detail', args=(festival.id,)))
-
