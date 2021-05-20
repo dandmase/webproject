@@ -4,12 +4,12 @@
 {% block content %}
 
 <div class="row">
-  <h4 class="col"><a href="{% url 'topfestivals:festival_detail' artist.festival.id %}">{{ artist.festival.name }}</a> > {{ artist.name }}</h4>
+  <h4 class="col"><a href="{% url 'topfestivals:festival_detail' artist.festival.id %}">{{ artist.festival.name }}</a></h4>
 </div>
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="{{ artist.image.url }}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
+    <h5 class="card-title">{{ artist.name }}</h5>
         <p class="card-text">{{ artist.description }}</p>
         <p class="card-text">Time playing:{{ artist.time }}</p>
       {% if user == festival.user or user.is_superuser %}
