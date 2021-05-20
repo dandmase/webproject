@@ -41,7 +41,7 @@
                     {% endif %}
                 </div>
                 <div class="col-sm-3 text-right align-bottom">
-                    {% if user == festival.user %}
+                    {% if user == festival.user or user.is_superuser %}
                         <a class="btn btn-primary" href="{% url 'topfestivals:festival_edit' festival.id %}">Edit</a>
                     {% endif %}
                 </div>
@@ -55,8 +55,8 @@
                         <p><a class="artist-link" href="{% url 'topfestivals:artist_detail' festival.id artist.id %}">
                             {{ artist.name }}
                         </a></p>
-                        {% if user.is_authenticated %}
-                            {% if user == artist.user %}
+                        {% if user.is_authenticated  %}
+                            {% if user == artist.user or user.is_superuser%}
                                 <a href="{% url 'topfestivals:artist_delete' artist.id %}" class="btn btn-danger btn-sm ">DELETE</a>
                             {% endif %}
                         {% endif %}
@@ -64,7 +64,7 @@
                     {% endfor %}
                 </div>
                 <div class="col-sm-3 text-right">
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated or user.is_superuser %}
                         <a class="btn btn-success" href="{% url 'topfestivals:artist_create' festival.id %}">Add Artist</a>
                     {% endif %}
                 </div>
