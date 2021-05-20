@@ -6,15 +6,15 @@ from datetime import date
 
 class Festival(models.Model):
     name = models.CharField(max_length=120)
-    street = models.CharField(max_length=120, blank=True, null=True)
-    number = models.IntegerField(blank=True, null=True)
-    city = models.CharField(max_length=120, blank=True, null=True)
-    zipCode = models.CharField(max_length=120, blank=True, null=True)
-    stateOrProvince = models.CharField(max_length=120, blank=True, null=True)
-    country = models.CharField(max_length=120, blank=True, null=True)
-    telephone = models.CharField(max_length=120, blank=True, null=True)
+    street = models.CharField(max_length=120)
+    number = models.IntegerField(null=True)
+    city = models.CharField(max_length=120, null=True)
+    zipCode = models.CharField(max_length=120,  null=True)
+    stateOrProvince = models.CharField(max_length=120,  null=True)
+    country = models.CharField(max_length=120,  null=True)
+    telephone = models.CharField(max_length=120,  null=True)
     url = models.URLField(blank=True, null=True)
-    image = models.ImageField(upload_to="topfestivals", blank=True, null=True)
+    image = models.ImageField(upload_to="topfestivals", null=True)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
 
@@ -35,12 +35,12 @@ class Festival(models.Model):
 
 class Artist(models.Model):
     name = models.CharField(max_length=120)
-    description = models.TextField(blank=True, null=True)
-    age = models.CharField(max_length=120, blank=True, null=True)
-    time = models.CharField(max_length=120, blank=True, null=True)
+    description = models.TextField( null=True)
+    age = models.CharField(max_length=120,  null=True)
+    time = models.CharField(max_length=120,  null=True)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     date = models.DateField(default=date.today)
-    image = models.ImageField(upload_to="topfestivals", blank=True, null=True)
+    image = models.ImageField(upload_to="topfestivals",  null=True)
     festival = models.ForeignKey(Festival, null=True, related_name='artists', on_delete=models.CASCADE)
 
     def __unicode__(self):
