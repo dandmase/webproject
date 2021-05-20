@@ -54,12 +54,12 @@
                     {% for artist in festival.artists.all %}
                         <p><a class="artist-link" href="{% url 'topfestivals:artist_detail' festival.id artist.id %}">
                             {{ artist.name }}
-                        </a></p>
-                        {% if user.is_authenticated  %}
+                            {% if user.is_authenticated  %}
                             {% if user == artist.user or user.is_superuser%}
                                 <a href="{% url 'topfestivals:artist_delete' artist.id %}" class="btn btn-danger btn-sm ">DELETE</a>
                             {% endif %}
                         {% endif %}
+                        </a></p>
                     {% empty %}<p>Sorry, no artist for this festival yet</p>
                     {% endfor %}
                 </div>
