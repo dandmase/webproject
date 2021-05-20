@@ -22,6 +22,7 @@ For the development of the bussines model of TopFestivals we use the following t
 ## How to RUN
 ### Requisites
 - [X] This project uses [*python 3.9*][2] and pip.
+- [X] Open requirements.txt and install all de requeriments.
 
 [2]: https://www.python.org/downloads/release/python-394/ "Download Python 3.9"
   
