@@ -14,15 +14,14 @@
 </div>
 
 {% for festival in latest_festival_list %}
-    <h5 class="card-title col-md-12 p-1">
-            <a href="{% url 'topfestivals:festival_detail' festival.id %}">{{ festival.name }}</a>
-
-    </h5>
     <div class="card mb-3">
         {% if festival.image %}
         <img class="card-img-top" src="{{ festival.image.url }}" width="300" height="300" alt="Card image cap">
         {% endif %}
         <div class="card-body">
+        <h5 class="card-title col-md-12 p-1">
+        <a href="{% url 'topfestivals:festival_detail' festival.id %}">{{ festival.name }}</a>
+        </h5>
         <div class="col-md-3 p-1 mb-1">
           <h6 class="card-subtitle text-muted">Location</h6>
           <p class="card-text small">
