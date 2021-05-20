@@ -1,0 +1,17 @@
+{% extends "topfestivals/base.html" %}
+{% block title %}Topfestivals - Delete artist{% endblock title %}
+{% block content %}
+<div class="col-xs-12" style=" padding-top: 20px;">
+    <div class="col-xs-12" align="center" style="background-color: #F37B7B;">
+        <h1 name="name"><i class="fas fa-exclamation-triangle"></i></i> Watch Out!</h1>
+    </div>
+</div>
+<form method="post">{% csrf_token %}
+    <div class="row">
+        <div style="padding-right: 10px;">
+            <p style="font-size: 20px;"><strong>Are you sure you want to delete "{{ object.name }}"? </strong></p>
+        </div>
+        <input type="submit" class="btn btn-danger" value="Confirm" name="delete">
+    </div>
+</form>
+{% endblock content %}

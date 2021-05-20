@@ -1,7 +1,6 @@
 """webproject URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+    https://docs.djangoproject.com/en/2.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,16 +13,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from topfestivals import views
-from django.contrib.auth.decorators import login_required
-from django.urls import path, include, re_path
-from django.contrib.auth.views import logout_then_login, LoginView
+from django.urls import path, include
+from django.contrib.auth import views
+from django.views.generic import RedirectView
+from django.views.static import serve
+from django.conf import settings
 
 urlpatterns = [
+    path('', RedirectView.as_view(pattern_name='topfestivals:festival_list'), name='home'),
     path('admin/', admin.site.urls),
-    path('', views.Home.as_view()),
-    path('accounts/login/', LoginView.as_view(template_name='loginpage.html')),
-    path('logout/', logout_then_login),
-    path('festivals/', views.festival),
+    path('topfestivals/', include('topfestivals.urls', namespace='topfestivals')),
+    path('accounts/login/', views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', views.LogoutView.as_view(), name='logout'),
+]
+
+# if settings.DEBUG:
+# Used even in production though not recommended: https://devcenter.heroku.com/articles/s3-upload-python
+urlpatterns += [
+    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT, })
 ]

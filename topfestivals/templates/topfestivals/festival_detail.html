@@ -1,0 +1,145 @@
+{% extends "topfestivals/base.html" %}
+{% block title %}TopFestivals - {{ festival.name }}{% endblock %}
+{% block content %}
+
+<div class="row">
+        <h4 class="col">{{ fesival.name }}</h4>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md">
+            <h5>Details</h5>
+            <div class="row">
+                <div class="col-sm-9">
+                    {% if festival.street %}
+                    <div class="row">
+                        <div class="col-1">&#9993;</div>
+                        <div class="col">
+                            {{ festival.street }} {{ festival.number }}, {{ festival.zipcode }} {{ festival.city }}
+                            <br/>
+                            {{ festival.stateOrProvince }} ({{ festival.country }})
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if festival.telephone %}
+                    <div class="row">
+                        <div class="col-1">&phone;</div>
+                        <div class="col"><a href="tel:{{ festival.telephone }}">{{ festival.telephone }}</a></div>
+                    </div>
+                    {% endif %}
+                    {% if festival.url %}
+                    <div class="row">
+                        <div class="col-1">&#127760;</div>
+                        <div class="col"><a href="{{ festival.url }}">{{ festival.url }}</a></div>
+                    </div>
+                    {% endif %}
+                    {% if festival.image %}
+                        <div class="row">
+                        <div class="col">
+                            <img class="img-fluid" src="{{ festival.image.url }}"/>
+                        </div>
+                      </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-3 text-right align-bottom">
+                    {% if user == festival.user %}
+                        <a class="btn btn-primary" href="{% url 'topfestivals:festival_edit' festival.id %}">Edit</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md mt-3">
+            <h5>Artists</h5>
+            <div class="row">
+                <div class="col-sm-9">
+                    {% for artist in festival.artists.all %}
+                        <p><a class="artist-link" href="{% url 'topfestivals:artist_detail' festival.id artist.id %}">
+                            {{ artist.name }}
+                        </a></p>
+                        {% if user.is_authenticated %}
+                            {% if user == artist.user %}
+                                <a href="{% url 'topfestivals:artist_delete' artist.id %}" class="btn btn-danger btn-sm ">DELETE</a>
+                            {% endif %}
+                        {% endif %}
+                    {% empty %}<p>Sorry, no artist for this festival yet</p>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-3 text-right">
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-success" href="{% url 'topfestivals:artist_create' festival.id %}">Add Artist</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md">
+            <h5>Rating</h5>
+            {% if festival.festivalreview_set.all|length > 0 %}
+            <p>
+                <strong>{{ festival.averageRating|stringformat:".1f" }}</strong>
+                {% with festival.festivalreview_set.all|length as reviewCount %}
+                    (average from {{ reviewCount }} review{{ reviewCount|pluralize }})
+                {% endwith %}
+            </p>
+            {% endif %}
+            <form action="{% url 'topfestivals:review_create' festival.id %}" method="post">
+                {% csrf_token %}
+                <div id="div_id_comment" class="form-group">
+                    <label for="id_comment" class="col-form-label ">Comment:</label>
+                    <textarea class="form-control" name="comment" id="id_comment" rows="2"></textarea>
+                </div>
+                <p>Rating:
+                    <span class="rating">
+                    {% for rate in RATING_CHOICES reversed %}
+                        <input type="radio" class="rating-input" id="rating-{{ forloop.revcounter }}"
+                               name="rating" value="{{ rate.0 }}"/>
+                        <label for="rating-{{ forloop.revcounter }}" class="rating-star"></label>
+                    {% endfor %}
+                    </span>
+                </p>
+                <div class="text-right">
+                    <button class="btn btn-success" type="submit">Add Review</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md">
+            <h5>Reviews</h5>
+            {% for review in festival.festivalreview_set.all %}
+                <blockquote class="blockquote review">
+                    <small>
+                        <span class="rating">
+                          {% for star in RATING_CHOICES %}{% if forloop.counter <= review.rating %}&starf;{% else %}&star;{% endif %}{% endfor %}
+                        </span>
+                        {% if review.comment %}
+                            &rdquo;<strong class="mb-0">{{ review.comment }}</strong>&rdquo;{% endif %}
+                        <footer class="blockquote-footer text-center">{{ review.user }}, {{ review.date }}</footer>
+                    </small>
+                </blockquote>
+            {% empty %}<p>Sorry, no reviews for this festival yet</p>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+
+<h6>
+    Stages
+    {% if user.is_authenticated %}
+        (<a href="{% url 'topfestivals:stage_create' festival.id %}">add</a>)
+    {% endif %}
+</h6>
+<ul>
+    {% for stage in festival.stage.all %}
+        <li><a href="{% url 'topfestivals:stage_detail' festival.id stage.id %}">
+            (<a href="{% url 'topfestivals:stage_delete' stage.id %}">delete</a>)
+            (<a href="{% url 'topfestivals:stage_edit' stage.festival.id stage.id %}">edit</a>)
+            {{ stage.music }}</a></li>
+    {% empty %}<li>Sorry, no stages for this festival yet.</li>
+    {% endfor %}
+</ul>
+<div class="text-muted text-center">
+        Created by {{ festival.user }} on {{ festival.date }}
+    </div>
+{% endblock %}

@@ -49,19 +49,6 @@ class Artist(models.Model):
     def get_absolute_url(self):
         return reverse('topfestivals:artist_detail', kwargs={'pkr': self.festival.pk, 'pk': self.pk})
 
-class Stage(models.Model):
-    music = models.TextField(max_length=120, blank=True, null=True)
-    description = models.TextField(max_length=120, blank=True, null=True)
-    location = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
-    date = models.DateField(default=date.today)
-    festival = models.ForeignKey(Festival, null=True, related_name='stage', on_delete=models.CASCADE)
-
-    def __unicode__(self):
-        return u"%s" % self.music
-
-    def get_absolute_url(self):
-        return reverse('topfestivals:stage_detail', kwargs={'pkr': self.festival.pk, 'pk': self.pk})
 
 class Review(models.Model):
     RATING_CHOICES = ((1, 'one'), (2, 'two'), (3, 'three'), (4, 'four'), (5, 'five'))

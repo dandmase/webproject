@@ -1,0 +1,23 @@
+{% extends "topfestivals/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h4> TopFestivals Login </h4>
+
+<form method="post" action="{% url 'login' %}">
+
+    <input type="hidden" name="next" value="{{ next }}"/>
+
+    {{ form|crispy }}
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Login</button>
+        <a class="btn btn-danger" href="{{ next }}">Cancel</a>
+    </div>
+
+    {% csrf_token %}
+</form>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "topfestivals/base.html" %}
+{% block content %}
+<h5>Festivals</h5>
+
+<div class="row">
+  <div class="col-sm-9">
+      <p class="text-muted">Festivals recently added to Topfestivals</p>
+  </div>
+  <div class="col-sm-3 mb-3 text-right">
+      {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'topfestivals:festival_create' %}">Add</a>
+      {% endif %}
+  </div>
+</div>
+
+{% for festival in latest_festival_list %}
+    <div class="card mb-3">
+        {% if festival.image %}
+        <img class="card-img-top" src="{{ festival.image.url }}" width="1161" height="180" alt="Card image cap">
+        {% endif %}
+        <div class="card-body">
+        <h5 class="card-title col-md-12 p-1">
+            <a href="{% url 'topfestivals:festival_detail' festival.id %}">{{ festival.name }}</a>
+
+        </h5>
+        <div class="col-md-3 p-1 mb-1">
+          <h6 class="card-subtitle text-muted">Location</h6>
+          <p class="card-text small">
+              {{ festival.street }} {{ festival.number }}, {{ festival.city }} ({{ festival.country }})
+          </p>
+        </div>
+        <div class="col-md-3 p-1 mb-1 small">
+          <h6 class="card-subtitle text-muted">Details</h6>
+          <p class="card-text">{{ festival.artists.count }} artist{{ festival.artists.count|pluralize:"es" }} registered</p>
+        </div>
+        <div class="col-md-3 p-1 mb-1 small">
+          <h6 class="card-subtitle text-muted">Rating</h6>
+          <p class="card-text">{{ festival.averageRating|stringformat:".1f" }}
+              {% with festival.festivalreview_set.count as reviewCount %}
+                  ({{ reviewCount }} review{{ reviewCount|pluralize }})
+              {% endwith %}
+        </p>
+        </div>
+        <div class="col-md-3 p-1 mb-1 small">
+          {% if user.is_authenticated %}
+            {% if user == festival.user or user.is_superuser %}
+                <a href="{% url 'topfestivals:festival_delete' festival.id %}" class="btn btn-danger btn-sm ">DELETE</a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+{% empty %}
+    <p>Sorry, no festivals registered yet.</p>
+{% endfor %}
+{% endblock %}

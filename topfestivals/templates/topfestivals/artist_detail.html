@@ -1,0 +1,34 @@
+{% extends "topfestivals/base.html" %}
+{% load l10n %}
+
+{% block content %}
+
+<div class="row">
+  <h4 class="col"><a href="{% url 'topfestivals:festival_detail' artist.festival.id %}">{{ artist.festival.name }}</a> > {{ artist.name }}</h4>
+</div>
+
+<div class="row">
+  <div class="col-sm-9">
+    {% if artist.description %}<p>{{ artist.description }}</p>{% endif %}
+    {% if artist.time %}<p>Time h {{ artist.time }}</p>{% endif %}
+  </div>
+  <div class="col-sm-3 mb-5">
+      {% if user == festival.user or user.is_superuser %}
+         <a class="btn btn-primary" href="{% url 'topfestivals:artist_edit' artist.festival.id artist.id %}">Edit</a>
+      {% endif %}
+ </div>
+</div>
+{% if artist.image %}
+    <div class="row">
+    <div class="col">
+        <img class="img-fluid" src="{{ artist.image.url }}"/>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+  <div class="text-muted text-center">
+    Created by {{ artist.user }} on {{ artist.date }}
+  </div>
+{% endblock %}
