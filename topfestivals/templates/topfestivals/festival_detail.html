@@ -1,4 +1,5 @@
 {% extends "topfestivals/base.html" %}
+
 {% block title %}TopFestivals - {{ festival.name }}{% endblock %}
 {% block content %}
 
@@ -6,7 +7,7 @@
         <h4 class="col">{{ fesival.name }}</h4>
     </div>
     <div class="row mt-3">
-        <div class="col-md">
+        <div class="col-sm">
             <h5>Details</h5>
             <div class="row">
                 <div class="col-sm-9">
@@ -35,7 +36,7 @@
                     {% if festival.image %}
                         <div class="row">
                         <div class="col">
-                            <img class="img-fluid" src="{{ festival.image.url }}"/>
+                            <img class="img-fluid" alt="Festival Image" src="{{ festival.image.url }}"/>
                         </div>
                       </div>
                     {% endif %}
@@ -47,7 +48,37 @@
                 </div>
             </div>
         </div>
-        <div class="col-md">
+     <div class="col-sm">
+      <script>
+    $(document).ready(function ($){
+         $.ajax({
+            url: "https://api.openweathermap.org/data/2.5/weather?q={{ festival.city }}&appid=f429257752dc74012c80639a7ead1452&units=metric",
+            type: "GET",
+            dataType: "jsonp",
+            success:function (result){
+            console.log(result);
+            var information = show_weather(result);
+            $("#show_weather").html(information);
+
+            },
+            error: function (error){
+                console.log(error);
+            }
+        });
+
+    });
+    function show_weather(result){
+    return  "<p><b>Actual Temperature:</b> "+ result.main.temp +"ºC</p>" + "<p><b>Actual Weather:</b> "+ result.weather[0].main +"</p>";
+    }</script>
+    <h5>Weather</h5>
+      <div class="row">
+                <div class="col-sm-9">
+                    <p  id="show_weather" class="card-text"></p>
+                </div>
+      </div>
+     </div>
+
+        <div class="col-sm">
             <h5>Artists</h5>
             <div class="row">
                 <div class="col-sm-9">
@@ -118,6 +149,8 @@
                 </blockquote>
             {% empty %}<p>Sorry, no reviews for this festival yet</p>
             {% endfor %}
+
+
         </div>
     </div>
 
