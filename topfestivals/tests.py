@@ -25,11 +25,50 @@ class FestivalReviewTestCase(TestCase):
         festival = Festival.objects.get(name="Trendy Festival")
         self.assertEqual(festival.averageRating(), 3)
 
-    def test_average_3artist(self):
-        """The average review for a full festival with 3 artist is properly computed"""
+    def test_average_artists(self):
+        """The  for a full festival with 3 artist is properly computed"""
         festival = Festival.objects.get(name="Full Festival")
         self.assertEqual(festival.artists.count(), 3)
 
+    def test_update_festival(self):
+        """The update for a full festival with city"""
+        festival = Festival.objects.filter(name="Full Festival")
+        festival.update(city="Minnesotta")
+        verify = Festival.objects.get(name="Full Festival")
+        self.assertEqual(verify.city, "Minnesotta")
+
+    def test_update_artists(self):
+        """The update for a artist with festival"""
+        artist = Artist.objects.filter(name="Els Catarres")
+        trendy = Festival.objects.get(name="Trendy Festival")
+        artist.update(festival=trendy)
+        verify = Artist.objects.get(name="Els Catarres")
+        self.assertEqual(verify.festival, trendy)
+
+    def test_update_review(self):
+        """The update for a full festival with city"""
+        review = FestivalReview.objects.filter(rating=5)
+        review.update(rating=3)
+        verify = FestivalReview.objects.filter(rating=3)
+        self.assertEqual(verify.count(), 3)
+
+    def test_deletion_festival(self):
+        """The update for a artist with festival"""
+        festival = Festival.objects.filter(name="Full Festival")
+        festival.delete()
+        self.assertFalse(festival.exists())
+
+    def test_deletion_artist(self):
+        """The update for a artist with festival"""
+        artist = Artist.objects.filter(name="Lady Gaga")
+        artist.delete()
+        self.assertFalse(artist.exists())
+
+    def test_deletion_review(self):
+        """The update for a artist with festival"""
+        review = FestivalReview.objects.filter(rating=1)
+        review.delete()
+        self.assertFalse(review.exists())
 
     def test_average_no_review(self):
         """The average review for a festival without reviews is 0"""
