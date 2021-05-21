@@ -66,15 +66,4 @@ urlpatterns = [
     path('artist/delete/<int:pk>', views.ArtistDelete.as_view(),
          name='artist_delete'),
 
-    # Delete review details, ex.: /topfestivals/review/delete/
-    path('review/delete/<int:pk>', views.ReviewDelete.as_view(),
-         name='review_delete'),
-
-    # Edit festival review details, ex.: /topfestivals/festivals/1/review/1/edit/
-    path('festivals/<int:pkr>/review/<int:pk>/edit',
-         LoginRequiredCheckIsOwnerUpdateView.as_view(
-             model=Review,
-             form_class=ReviewForm),
-         name='review_edit'),
-
 ]

@@ -16,11 +16,11 @@ class FestivalReviewTestCase(TestCase):
         Festival.objects.create(name="Unknown Festival", user=user1)
 
     def test_average_3reviews(self):
-        """The average review for a restaurant with 3 reviews is properly computed"""
+        """The average review for a festival with 3 reviews is properly computed"""
         festival = Festival.objects.get(name="Trendy Festival")
         self.assertEqual(festival.averageRating(), 3)
 
     def test_average_no_review(self):
-        """The average review for a restaurant without reviews is 0"""
+        """The average review for a festival without reviews is 0"""
         festival = Festival.objects.get(name="Unknown Festival")
         self.assertEqual(festival.averageRating(), 0)

@@ -82,15 +82,6 @@ class ArtistDelete(LoginRequiredMixin, DeleteView):
         return artist is not None and self.request.user.pk == artist.user.pk
 
 
-class ReviewDelete(LoginRequiredMixin, DeleteView):
-    model = Review
-    success_url = reverse_lazy('home')
-    template_name = 'topfestivals/review_delete.html'
-
-    def test_func(self):
-        review = Review.objects.filter(pk=self.kwargs['pk']).first()
-        return review is not None and self.request.user.pk == review.user.pk
-
 
 @login_required()
 def review(request, pk):
