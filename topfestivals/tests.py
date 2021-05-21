@@ -53,19 +53,19 @@ class FestivalReviewTestCase(TestCase):
         self.assertEqual(verify.count(), 3)
 
     def test_deletion_festival(self):
-        """The update for a artist with festival"""
+        """Deletion Full Festival"""
         festival = Festival.objects.filter(name="Full Festival")
         festival.delete()
         self.assertFalse(festival.exists())
 
     def test_deletion_artist(self):
-        """The update for a artist with festival"""
+        """Deletion Lady Gaga"""
         artist = Artist.objects.filter(name="Lady Gaga")
         artist.delete()
         self.assertFalse(artist.exists())
 
     def test_deletion_review(self):
-        """The update for a artist with festival"""
+        """Deletion ratings 1"""
         review = FestivalReview.objects.filter(rating=1)
         review.delete()
         self.assertFalse(review.exists())
