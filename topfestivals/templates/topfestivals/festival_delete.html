@@ -2,14 +2,18 @@
 {% block title %}Topfestivals - Delete festival{% endblock title %}
 {% block content %}
 <div class="col-xs-12" style=" padding-top: 20px;">
-    <div class="col-xs-12" align="center" style="background-color: #F37B7B;">
-        <h1 name="name"><i class="fas fa-exclamation-triangle"></i></i> Watch Out!</h1>
-    </div>
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Watch Out!</h4>
+            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+            <hr>
+            <p class="mb-0">Are you sure you want to delete "{{ object.name }}"?</p>
+</div>
+
 </div>
 <form method="post">{% csrf_token %}
     <div class="row">
         <div style="padding-right: 10px;">
-            <p style="font-size: 20px;"><strong>Are you sure you want to delete "{{ object.name }}"? </strong></p>
+            <p style="font-size: 20px;"><strong>                                            </strong></p>
         </div>
         <input type="submit" class="btn btn-danger" value="Confirm" name="delete">
     </div>
