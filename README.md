@@ -3,6 +3,19 @@
 Web Project - [*TopFestivals*][1]
 
 [1]: https://github.com/dandmase/webproject
+## Table of contents
+
+1. [Collaborators](#collaborators-)
+2. [Tecnologies](#tecnologies-)
+3. [How to RUN](#how-to-run-)
+    - [Requisites](#requisites-)
+    - [Running Project](#running-project-)
+    - [Users](#users-)
+4. [Design considerations](#design-considerations-)
+5. [RDF Considerations](#rdf-considerations-)
+    - [RDF page code](#rdf-page-code)
+    - [Schema RDF](#schema-rdf)
+    - [Google Rich Results Test](#google-rich-results-test)
 
 ## Collaborators 👷
 * Dand Marbà
@@ -11,7 +24,7 @@ Web Project - [*TopFestivals*][1]
 
 ## Tecnologies 🎓
 
-For the development of the bussines model of TopFestivals we use the following tecnologies:
+For the development of the business model of TopFestivals we use the following tecnologies:
 - [X]  Use of **Framework Django** 
 
 
@@ -47,10 +60,13 @@ http://127.0.0.1:8000/admin/
     * Username : *provauser*
     * Password : *user1234*
 
-### Design considerations 🎨
+## Design considerations 🎨
 We wanted a webpage with a lot of festivals where people can add a comment about that festival. So in the main page we think that should appear all the registered festivals with a picture of it and some few details.
+
 Then when you want to see the information of a festival or the comments that users had add, you have to click te name of he festival and the user would be redirectioned to another page with all the information about the festival,
-the comments and all the artist that will play. When all the functionalities worked correctly, we had concentrated on the design of the page trying differnt kinds of disgn we finally choose this. 
+the comments and all the artist that will play. 
+
+When all the functionalities worked correctly, we had concentrated on the design of the page trying differnt kinds of disgn we finally choose this. 
 And we do the same design when you want to see the information of an artist.
 
 ## RDF Considerations 🌍
