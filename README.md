@@ -27,8 +27,9 @@ Web Project - [*TopFestivals*][1]
 For the development of the business model of TopFestivals we use the following tecnologies:
 - [X]  Use of **Framework Django** 
 
+Heroku [*WEB*][3]
 
-
+[3]: https://topfestivals.herokuapp.com/topfestivals/ "Entry heroku web"
 
 
 ## How to RUN 🔧
