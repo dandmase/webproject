@@ -53,9 +53,9 @@ Then when you want to see the information of a festival or the comments that use
 the comments and all the artist that will play. When all the functionalities worked correctly, we had concentrated on the design of the page trying differnt kinds of disgn we finally choose this. 
 And we do the same design when you want to see the information of an artist.
 
-##RDF Considerations 🌍
+## RDF Considerations 🌍
 
-###RDF page code
+### RDF page code
 
 ```html
 <!DOCTYPE html>
@@ -129,8 +129,10 @@ And we do the same design when you want to see the information of an artist.
 </html>
 ```
 
-###Schema RDF
+### Schema RDF
+
 ![Schema RDF image](docs/scheme.png)
 
-###Google Rich Results Test
+### Google Rich Results Test
+
 ![Google Results](docs/google_results.jpg)
