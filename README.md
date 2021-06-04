@@ -15,7 +15,7 @@ Web Project - [*TopFestivals*][1]
 5. [RDF Considerations](#rdf-considerations-)
     - [RDF page code](#rdf-page-code-)
     - [Schema RDF](#schema-rdf-)
-    - [Google Rich Results Test](#google-rich-results-test-%EF%B8%8F)
+    - [Google Rich Results Test](#google-rich-results-test-)
 
 ## Collaborators 👷
 * Dand Marbà
