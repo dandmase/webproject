@@ -149,6 +149,6 @@ And we do the same design when you want to see the information of an artist.
 
 ![Schema RDF image](docs/scheme.png)
 
-### Google Rich Results Test✔️
+### Google Rich Results Test ✔
 
 ![Google Results](docs/google_results.jpg)
