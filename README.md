@@ -6,7 +6,6 @@ Web Project - [*TopFestivals*][1]
 ## Collaborators
 * Dand Marbà
 * Joel Romia
-* José Ramon Noguero
 
 ## Tecnologies
 
