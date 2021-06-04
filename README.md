@@ -25,11 +25,10 @@ Web Project - [*TopFestivals*][1]
 ## Tecnologies 🎓
 
 For the development of the business model of TopFestivals we use the following tecnologies:
-- [X]  **Django** 
-
+- [X]  **Django**
 - [X] **Heroku** [*WEB*][3]
- -[X] **Crispy Forms** 
--[X] **Bootstrap 4** 
+- [X] **Crispy Forms**
+- [X] **Bootstrap 4** 
 
 [3]: https://topfestivals.herokuapp.com/topfestivals/ "Entry heroku web"
 
