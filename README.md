@@ -3,7 +3,7 @@
 Web Project - [*TopFestivals*][1]
 
 [1]: https://github.com/dandmase/webproject
-## Table of contents
+## Table of contents 🎯
 
 1. [Collaborators](#collaborators-)
 2. [Tecnologies](#tecnologies-)
@@ -71,7 +71,7 @@ And we do the same design when you want to see the information of an artist.
 
 ## RDF Considerations 🌍
 
-### RDF page code
+### RDF page code 📌
 
 ```html
 <!DOCTYPE html>
@@ -145,10 +145,10 @@ And we do the same design when you want to see the information of an artist.
 </html>
 ```
 
-### Schema RDF
+### Schema RDF 📑
 
 ![Schema RDF image](docs/scheme.png)
 
-### Google Rich Results Test
+### Google Rich Results Test 	✔️
 
 ![Google Results](docs/google_results.jpg)
